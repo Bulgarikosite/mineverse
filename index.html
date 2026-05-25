@@ -4,224 +4,718 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minecraft Fan Site</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Nunito', sans-serif; background: #111; color: #eee; }
 
+:root {
+  --green: #5a9e3a;
+  --green-light: #6dba47;
+  --bg: #0e0e0e;
+  --card: #181818;
+  --border: #272727;
+  --text: #eeeeee;
+  --muted: #666;
+}
+
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); }
+
+/* NAV */
 nav {
-  background: #1a1a1a;
-  padding: 1rem 2rem;
+  position: sticky; top: 0; z-index: 100;
+  background: #141414;
+  padding: 0 2rem;
   display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 3px solid #5a9e3a;
+  height: 60px;
+  border-bottom: 2px solid var(--green);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
-.logo { font-size: 1.4rem; font-weight: 800; color: #5a9e3a; display: flex; align-items: center; gap: 10px; }
-.logo img { width: 28px; height: 28px; image-rendering: pixelated; }
-.nav-links { display: flex; gap: 1.5rem; list-style: none; }
-.nav-links a { color: #aaa; text-decoration: none; font-weight: 600; }
-.nav-links a:hover { color: #fff; }
+.logo { font-size: 1.3rem; font-weight: 900; color: var(--green); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+.logo img { width: 30px; height: 30px; image-rendering: pixelated; }
+.nav-links { display: flex; gap: 0.25rem; list-style: none; }
+.nav-links a {
+  color: #888; text-decoration: none; font-weight: 700; font-size: 0.85rem;
+  padding: 6px 14px; border-radius: 7px; transition: background 0.15s, color 0.15s;
+}
+.nav-links a:hover { color: #fff; background: #222; }
 
+/* HERO */
 .hero {
-  text-align: center;
-  padding: 5rem 2rem;
-  background: #161616;
-  border-bottom: 1px solid #222;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 2rem;
+  max-width: 1000px; margin: 0 auto;
+  padding: 5rem 2rem 4rem;
 }
-.hero img { width: 120px; image-rendering: pixelated; margin-bottom: 1.5rem; }
-.hero h1 { font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
-.hero h1 span { color: #5a9e3a; }
-.hero p { font-size: 1.1rem; color: #888; max-width: 500px; margin: 0 auto 2rem; }
-.hero a {
-  background: #5a9e3a; color: #fff;
-  padding: 12px 28px; border-radius: 8px;
-  text-decoration: none; font-weight: 700; font-size: 1rem;
+.hero-text h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900; color: #fff; line-height: 1.1;
+  letter-spacing: -1px; margin-bottom: 1rem;
 }
-.hero a:hover { background: #6dba47; }
+.hero-text h1 span { color: var(--green); }
+.hero-text p { font-size: 1rem; color: #777; max-width: 440px; line-height: 1.7; margin-bottom: 1.75rem; }
+.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  padding: 11px 24px; border-radius: 9px;
+  text-decoration: none; font-weight: 800; font-size: 0.9rem; transition: all 0.15s;
+}
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { background: var(--green-light); transform: translateY(-1px); }
+.btn-ghost { background: #1f1f1f; color: #aaa; border: 1px solid var(--border); }
+.btn-ghost:hover { background: #252525; color: #fff; }
+.hero-img { display: flex; gap: 12px; align-items: flex-end; }
+.hero-img img { image-rendering: pixelated; }
+.hero-img .steve { width: 110px; }
+.hero-img .alex { width: 95px; opacity: 0.8; }
 
-section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
-h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem; }
-.sub { color: #666; margin-bottom: 2rem; font-size: 0.95rem; }
+/* DIVIDER */
+hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+/* SECTIONS */
+.section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+.section-head { margin-bottom: 2rem; }
+.section-head h2 { font-size: 1.7rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+.section-head p { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
 
-.card {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 10px;
-  padding: 1.5rem;
+/* ABOUT STRIP */
+.about-strip {
+  background: #141414;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.about-inner {
+  max-width: 1000px; margin: 0 auto;
+  padding: 3.5rem 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+}
+.about-inner h2 { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 1rem; letter-spacing: -0.5px; }
+.about-inner p { color: #888; font-size: 0.92rem; line-height: 1.75; margin-bottom: 0.85rem; }
+.about-blocks { display: flex; gap: 10px; flex-wrap: wrap; }
+.block-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+}
+.block-item img { width: 44px; height: 44px; image-rendering: pixelated; }
+.block-item span { font-size: 0.7rem; font-weight: 700; color: #666; }
+
+/* GAME MODES */
+.modes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.mode-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.mode-card:hover { border-color: var(--green); transform: translateY(-3px); }
+.mode-card img { width: 48px; height: 48px; image-rendering: pixelated; margin-bottom: 1rem; display: block; }
+.mode-card h3 { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem; }
+.mode-card p { font-size: 0.83rem; color: #666; line-height: 1.65; }
+
+/* BIOMES */
+.biomes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.biome-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.4rem;
+  display: flex; gap: 1rem; align-items: flex-start;
   transition: border-color 0.2s;
 }
-.card:hover { border-color: #5a9e3a; }
-.card img { width: 52px; height: 52px; image-rendering: pixelated; margin-bottom: 0.75rem; display: block; }
-.card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-.card p { font-size: 0.85rem; color: #777; line-height: 1.6; }
+.biome-card:hover { border-color: var(--green); }
+.biome-card img { width: 48px; height: 48px; image-rendering: pixelated; flex-shrink: 0; margin-top: 2px; }
+.biome-card h3 { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 0.35rem; }
+.biome-card p { font-size: 0.82rem; color: #666; line-height: 1.6; }
+.biome-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 0.6rem; }
+.tag {
+  font-size: 0.65rem; font-weight: 800; padding: 2px 8px;
+  border-radius: 5px; letter-spacing: 0.03em;
+}
+.t-g { background: rgba(90,158,58,0.18); color: #7dcc55; }
+.t-r { background: rgba(200,60,60,0.18); color: #e07070; }
+.t-b { background: rgba(60,120,200,0.18); color: #70a8e0; }
+.t-y { background: rgba(200,160,40,0.18); color: #d4b050; }
+.t-n { background: rgba(120,120,120,0.15); color: #888; }
 
-.mob-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+/* CRAFTING */
+.crafting-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;
+}
+.recipe-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.recipe-row {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+  transition: border-color 0.2s;
+}
+.recipe-row:hover { border-color: var(--green); }
+.recipe-row img { width: 40px; height: 40px; image-rendering: pixelated; flex-shrink: 0; }
+.recipe-info h4 { font-size: 0.9rem; font-weight: 800; color: #fff; }
+.recipe-info p { font-size: 0.78rem; color: #555; margin-top: 2px; }
+.ingredients { display: flex; gap: 6px; margin-top: 6px; }
+.ingredients img { width: 24px; height: 24px; image-rendering: pixelated; background: #222; border-radius: 4px; padding: 2px; border: 1px solid #333; }
+
+.tips-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.tip {
+  background: var(--card); border-left: 3px solid var(--green);
+  border-radius: 0 10px 10px 0; padding: 0.9rem 1.1rem;
+  border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.tip h4 { font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
+.tip p { font-size: 0.8rem; color: #666; line-height: 1.55; }
+
+/* MOBS */
+.mob-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 0.75rem; }
 .mob {
-  background: #1a1a1a; border: 1px solid #2a2a2a;
-  border-radius: 10px; padding: 1.25rem 1rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem 0.75rem;
+  text-align: center; transition: border-color 0.2s, transform 0.2s;
+}
+.mob:hover { transform: translateY(-3px); }
+.mob.h:hover { border-color: #c04040; }
+.mob.p:hover { border-color: var(--green); }
+.mob.n:hover { border-color: #c0a030; }
+.mob.b:hover { border-color: #9050d0; }
+.mob img { width: 58px; height: 58px; image-rendering: pixelated; display: block; margin: 0 auto 0.6rem; }
+.mob-name { font-size: 0.82rem; font-weight: 800; color: #fff; display: block; margin-bottom: 0.35rem; }
+.mob-drop { font-size: 0.7rem; color: #555; display: block; margin-bottom: 0.5rem; line-height: 1.4; }
+.badge {
+  font-size: 0.62rem; font-weight: 800; padding: 2px 8px;
+  border-radius: 4px; letter-spacing: 0.03em; display: inline-block;
+}
+.b-g { background: rgba(90,158,58,0.2); color: #7dcc55; }
+.b-r { background: rgba(200,60,60,0.2); color: #e07070; }
+.b-y { background: rgba(200,160,40,0.2); color: #d4b050; }
+.b-p { background: rgba(140,80,200,0.2); color: #b080e0; }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem; }
+.stat {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem 1rem; text-align: center;
+  transition: border-color 0.2s;
+}
+.stat:hover { border-color: var(--green); }
+.stat-num { font-size: 1.9rem; font-weight: 900; color: var(--green); display: block; letter-spacing: -1px; }
+.stat-label { font-size: 0.78rem; color: #555; margin-top: 5px; display: block; font-weight: 700; }
+
+/* HISTORY */
+.timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 15px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--border);
+}
+.tl-item { display: flex; gap: 1.5rem; padding: 0 0 1.5rem; position: relative; }
+.tl-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--card); border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; z-index: 1;
+  font-size: 0.65rem; font-weight: 900; color: var(--green);
+}
+.tl-content { padding-top: 4px; }
+.tl-content h4 { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
+.tl-content p { font-size: 0.82rem; color: #666; line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  background: #141414;
+  border-top: 1px solid var(--border);
+  padding: 2rem;
   text-align: center;
 }
-.mob img { width: 56px; height: 56px; image-rendering: pixelated; display: block; margin: 0 auto 0.5rem; }
-.mob-name { font-size: 0.85rem; font-weight: 700; color: #fff; display: block; margin-bottom: 0.3rem; }
-.badge {
-  font-size: 0.65rem; font-weight: 700; padding: 2px 8px;
-  border-radius: 4px; letter-spacing: 0.03em;
-}
-.b-green  { background: rgba(90,158,58,0.2);  color: #7dcc55; }
-.b-red    { background: rgba(200,60,60,0.2);   color: #e07070; }
-.b-yellow { background: rgba(200,160,40,0.2);  color: #d4b050; }
-.b-purple { background: rgba(140,80,200,0.2);  color: #b080e0; }
+.footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--green); margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+footer p { font-size: 0.78rem; color: #444; }
 
-.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-.stat {
-  background: #1a1a1a; border: 1px solid #2a2a2a;
-  border-radius: 10px; padding: 1.5rem; text-align: center;
-}
-.stat-num { font-size: 1.8rem; font-weight: 800; color: #5a9e3a; display: block; }
-.stat-label { font-size: 0.8rem; color: #666; margin-top: 4px; display: block; }
-
-hr { border: none; border-top: 1px solid #222; }
-
-footer {
-  text-align: center; padding: 2rem;
-  color: #444; font-size: 0.8rem;
-  border-top: 1px solid #222;
+@media (max-width: 680px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-img { display: none; }
+  .about-inner { grid-template-columns: 1fr; }
+  .crafting-layout { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="logo">
     <img src="https://minecraft.wiki/images/Grass_Block_JE7_BE6.png" alt="grass block">
     Minecraft Fan
   </div>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#modes">Game Modes</a></li>
     <li><a href="#biomes">Biomes</a></li>
+    <li><a href="#crafting">Crafting</a></li>
     <li><a href="#mobs">Mobs</a></li>
-    <li><a href="#facts">Facts</a></li>
+    <li><a href="#history">History</a></li>
   </ul>
 </nav>
 
-<div class="hero">
-  <img src="https://minecraft.wiki/images/Steve_skin.png" alt="Steve">
-  <h1>Welcome to my<br><span>Minecraft</span> fan site!</h1>
-  <p>Everything you need to know about the best game ever made.</p>
-  <a href="#biomes">Start Exploring</a>
+<!-- HERO -->
+<div style="border-bottom: 1px solid var(--border);">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>The best game<br>ever made.<br><span>Period.</span></h1>
+      <p>A fan site covering everything about Minecraft — biomes, mobs, crafting, game modes, history, and more.</p>
+      <div class="hero-btns">
+        <a href="#about" class="btn btn-green">Learn More</a>
+        <a href="#mobs" class="btn btn-ghost">Browse Mobs</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img class="alex" src="https://minecraft.wiki/images/Alex_skin.png" alt="Alex">
+      <img class="steve" src="https://minecraft.wiki/images/Steve_skin.png" alt="Steve">
+    </div>
+  </div>
 </div>
 
-<section id="biomes">
-  <h2>Biomes</h2>
-  <p class="sub">Different areas of the world with their own vibes and resources.</p>
-  <div class="grid">
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Dark_Oak_Log_JE3_BE2.png" alt="Dark Oak">
-      <h3>Dark Oak Forest</h3>
-      <p>Super dense trees block sunlight so mobs can spawn even in daytime. Watch out!</p>
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>What is Minecraft?</h2>
+      <p>Minecraft is a sandbox game where you can build literally anything out of blocks. You gather resources, craft tools, fight monsters, and explore an infinite randomly generated world.</p>
+      <p>It was made by Markus "Notch" Persson in 2009 and bought by Microsoft in 2014 for $2.5 billion. It has since become the best-selling video game of all time with over 300 million copies sold.</p>
+      <p>There's no real goal — you can beat the Ender Dragon to "win", but most people just keep building and exploring forever.</p>
     </div>
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Sandstone_JE3_BE2.png" alt="Sandstone">
-      <h3>Desert Temple</h3>
-      <p>Has treasure chests BUT also TNT traps underneath. Check before you dig!</p>
-    </div>
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Water_JE15_BE8.png" alt="Water">
-      <h3>Deep Ocean</h3>
-      <p>Ocean monuments have gold blocks in the middle, but Guardians protect them.</p>
-    </div>
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Netherrack_JE3_BE1.png" alt="Netherrack">
-      <h3>The Nether</h3>
-      <p>Basically hell. Lava everywhere. You need to go here to beat the game though.</p>
-    </div>
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Packed_Ice_JE2_BE2.png" alt="Packed Ice">
-      <h3>Ice Spikes</h3>
-      <p>Really rare biome with massive ice towers. Looks insane but hard to build in.</p>
-    </div>
-    <div class="card">
-      <img src="https://minecraft.wiki/images/Jungle_Log_JE3_BE2.png" alt="Jungle">
-      <h3>Jungle</h3>
-      <p>Giant trees and hidden temples with puzzles. Also the only place to find parrots!</p>
+    <div>
+      <p style="font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Core Blocks</p>
+      <div class="about-blocks">
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Grass_Block_JE7_BE6.png" alt="Grass">
+          <span>Grass</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Dirt_JE2_BE2.png" alt="Dirt">
+          <span>Dirt</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Stone_JE5.png" alt="Stone">
+          <span>Stone</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Oak_Log_JE4_BE2.png" alt="Wood">
+          <span>Wood</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Diamond_Ore_JE3_BE3.png" alt="Diamond Ore">
+          <span>Diamond</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Obsidian_JE3_BE3.png" alt="Obsidian">
+          <span>Obsidian</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Sand_JE3_BE1.png" alt="Sand">
+          <span>Sand</span>
+        </div>
+        <div class="block-item">
+          <img src="https://minecraft.wiki/images/Lava_JE4_BE1.png" alt="Lava">
+          <span>Lava</span>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- GAME MODES -->
+<div id="modes">
+  <div class="section">
+    <div class="section-head">
+      <h2>Game Modes</h2>
+      <p>Pick how you want to play — there's a mode for everyone.</p>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="Survival">
+        <h3>Survival</h3>
+        <p>The classic mode. You have health and hunger, mobs attack at night, and you have to gather everything from scratch. This is how most people play.</p>
+      </div>
+      <div class="mode-card">
+        <img src="https://minecraft.wiki/images/Grass_Block_JE7_BE6.png" alt="Creative">
+        <h3>Creative</h3>
+        <p>You get every block for free, you can fly, and nothing can kill you. Perfect for building big projects or just messing around.</p>
+      </div>
+      <div class="mode-card">
+        <img src="https://minecraft.wiki/images/Barrier_JE2_BE1.png" alt="Hardcore">
+        <h3>Hardcore</h3>
+        <p>Same as Survival but if you die, your world is gone forever. Literally the hardest way to play. One mistake = start over.</p>
+      </div>
+      <div class="mode-card">
+        <img src="https://minecraft.wiki/images/Spectator_icon.png" alt="Spectator">
+        <h3>Spectator</h3>
+        <p>You can fly through walls and watch the world but can't interact with anything. Great for exploring or watching other players.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <hr>
 
-<section id="mobs">
-  <h2>Mobs</h2>
-  <p class="sub">Every creature in the game — friendly, annoying, and terrifying.</p>
-  <div class="mob-grid">
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Cow_JE3_BE3.png" alt="Cow">
-      <span class="mob-name">Cow</span><span class="badge b-green">Passive</span>
+<!-- BIOMES -->
+<div id="biomes">
+  <div class="section">
+    <div class="section-head">
+      <h2>Biomes</h2>
+      <p>The world is split into different biomes — each with its own look, mobs, and resources.</p>
     </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Pig_JE4_BE3.png" alt="Pig">
-      <span class="mob-name">Pig</span><span class="badge b-green">Passive</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Sheep_JE3_BE3.png" alt="Sheep">
-      <span class="mob-name">Sheep</span><span class="badge b-green">Passive</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Chicken_JE2_BE2.png" alt="Chicken">
-      <span class="mob-name">Chicken</span><span class="badge b-green">Passive</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Wolf_JE3_BE3.png" alt="Wolf">
-      <span class="mob-name">Wolf</span><span class="badge b-yellow">Neutral</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Enderman_JE3_BE3.png" alt="Enderman">
-      <span class="mob-name">Enderman</span><span class="badge b-yellow">Neutral</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Zombie_JE3_BE2.png" alt="Zombie">
-      <span class="mob-name">Zombie</span><span class="badge b-red">Hostile</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Skeleton_JE5.png" alt="Skeleton">
-      <span class="mob-name">Skeleton</span><span class="badge b-red">Hostile</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Creeper_JE3.png" alt="Creeper">
-      <span class="mob-name">Creeper</span><span class="badge b-red">Hostile</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Spider_JE3_BE2.png" alt="Spider">
-      <span class="mob-name">Spider</span><span class="badge b-red">Hostile</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Ender_Dragon_JE1.png" alt="Ender Dragon">
-      <span class="mob-name">Ender Dragon</span><span class="badge b-purple">Boss</span>
-    </div>
-    <div class="mob">
-      <img src="https://minecraft.wiki/images/Wither_JE2_BE2.png" alt="Wither">
-      <span class="mob-name">Wither</span><span class="badge b-purple">Boss</span>
+    <div class="biomes-grid">
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Dark_Oak_Log_JE3_BE2.png" alt="Dark Oak">
+        <div>
+          <h3>Dark Oak Forest</h3>
+          <p>Dense trees block sunlight so mobs spawn even during the day. Great for wood but pretty dangerous early game.</p>
+          <div class="biome-tags"><span class="tag t-g">Wood</span><span class="tag t-r">Dangerous</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Sandstone_JE3_BE2.png" alt="Sandstone">
+        <div>
+          <h3>Desert Temple</h3>
+          <p>Looks cool but has a TNT trap under the loot chest. Check before you break anything or you'll blow yourself up.</p>
+          <div class="biome-tags"><span class="tag t-y">Treasure</span><span class="tag t-r">TNT Trap</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Water_JE15_BE8.png" alt="Ocean">
+        <div>
+          <h3>Deep Ocean</h3>
+          <p>Ocean monuments are underwater structures with prismarine and a gold block room. Guardians will attack you on sight.</p>
+          <div class="biome-tags"><span class="tag t-b">Ocean Monument</span><span class="tag t-y">Gold</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Netherrack_JE3_BE1.png" alt="Nether">
+        <div>
+          <h3>The Nether</h3>
+          <p>Another dimension full of lava and fire mobs. You need Blaze rods from here to craft Eyes of Ender and get to The End.</p>
+          <div class="biome-tags"><span class="tag t-r">Extreme Danger</span><span class="tag t-n">Dimension</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Packed_Ice_JE2_BE2.png" alt="Ice">
+        <div>
+          <h3>Ice Spikes</h3>
+          <p>One of the rarest biomes. Giant spikes of packed ice stick out of the ground. Looks amazing for building winter builds.</p>
+          <div class="biome-tags"><span class="tag t-b">Packed Ice</span><span class="tag t-g">Rare</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Jungle_Log_JE3_BE2.png" alt="Jungle">
+        <div>
+          <h3>Jungle</h3>
+          <p>Massive trees and jungle temples hidden in the vines. Only biome where ocelots and parrots naturally spawn.</p>
+          <div class="biome-tags"><span class="tag t-g">Lush</span><span class="tag t-y">Temples</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/End_Stone_JE3_BE1.png" alt="The End">
+        <div>
+          <h3>The End</h3>
+          <p>The final dimension where the Ender Dragon lives. You get here by throwing Eyes of Ender to find a stronghold.</p>
+          <div class="biome-tags"><span class="tag t-p" style="background:rgba(140,80,200,0.18);color:#b080e0;">Boss Fight</span><span class="tag t-n">Dimension</span></div>
+        </div>
+      </div>
+      <div class="biome-card">
+        <img src="https://minecraft.wiki/images/Mycelium_JE3_BE2.png" alt="Mushroom">
+        <div>
+          <h3>Mushroom Island</h3>
+          <p>The safest biome in the game — hostile mobs don't spawn here at all. Has giant mushrooms and Mooshroom cows.</p>
+          <div class="biome-tags"><span class="tag t-g">Safe</span><span class="tag t-g">Rare</span></div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <hr>
 
-<section id="facts">
-  <h2>Cool Facts</h2>
-  <p class="sub">Some numbers that show how insanely popular Minecraft is.</p>
-  <div class="stats">
-    <div class="stat"><span class="stat-num">300M+</span><span class="stat-label">Copies sold</span></div>
-    <div class="stat"><span class="stat-num">140M</span><span class="stat-label">Monthly players</span></div>
-    <div class="stat"><span class="stat-num">300+</span><span class="stat-label">Unique blocks</span></div>
-    <div class="stat"><span class="stat-num">71</span><span class="stat-label">Biome types</span></div>
-    <div class="stat"><span class="stat-num">15</span><span class="stat-label">Years old</span></div>
-    <div class="stat"><span class="stat-num">#1</span><span class="stat-label">Best game ever</span></div>
-  </div>
-</section>
+<!-- CRAFTING -->
+<div id="crafting">
+  <div class="section">
+    <div class="section-head">
+      <h2>Crafting</h2>
+      <p>You need a crafting table to make most things. Here are some of the most important recipes.</p>
+    </div>
+    <div class="crafting-layout">
+      <div class="recipe-list">
+        <div class="recipe-row">
+          <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="Diamond Sword">
+          <div class="recipe-info">
+            <h4>Diamond Sword</h4>
+            <p>Best sword in base game. Deals 7 damage.</p>
+            <div class="ingredients">
+              <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" alt="diamond">
+              <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" alt="diamond">
+              <img src="https://minecraft.wiki/images/Stick_JE2_BE2.png" alt="stick">
+            </div>
+          </div>
+        </div>
+        <div class="recipe-row">
+          <img src="https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png" alt="Pickaxe">
+          <div class="recipe-info">
+            <h4>Diamond Pickaxe</h4>
+            <p>Needed to mine obsidian for a Nether portal.</p>
+            <div class="ingredients">
+              <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" alt="diamond">
+              <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" alt="diamond">
+              <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" alt="diamond">
+              <img src="https://minecraft.wiki/images/Stick_JE2_BE2.png" alt="stick">
+              <img src="https://minecraft.wiki/images/Stick_JE2_BE2.png" alt="stick">
+            </div>
+          </div>
+        </div>
+        <div class="recipe-row">
+          <img src="https://minecraft.wiki/images/Crafting_Table_JE4_BE3.png" alt="Crafting Table">
+          <div class="recipe-info">
+            <h4>Crafting Table</h4>
+            <p>First thing you should make. Opens the full 3x3 grid.</p>
+            <div class="ingredients">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+            </div>
+          </div>
+        </div>
+        <div class="recipe-row">
+          <img src="https://minecraft.wiki/images/Torch_JE4_BE2.png" alt="Torch">
+          <div class="recipe-info">
+            <h4>Torch</h4>
+            <p>Prevents mobs from spawning in your base at night.</p>
+            <div class="ingredients">
+              <img src="https://minecraft.wiki/images/Coal_JE3_BE2.png" alt="coal">
+              <img src="https://minecraft.wiki/images/Stick_JE2_BE2.png" alt="stick">
+            </div>
+          </div>
+        </div>
+        <div class="recipe-row">
+          <img src="https://minecraft.wiki/images/Chest_JE3_BE3.png" alt="Chest">
+          <div class="recipe-info">
+            <h4>Chest</h4>
+            <p>Stores up to 27 stacks of items. Put two next to each other for a double chest.</p>
+            <div class="ingredients">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+              <img src="https://minecraft.wiki/images/Oak_Planks_JE5_BE4.png" alt="plank">
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div>
+        <p style="font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Pro Tips</p>
+        <div class="tips-list">
+          <div class="tip">
+            <h4>Always get wood first</h4>
+            <p>You can't do anything without wood. Punch trees as soon as you spawn, make planks, then a crafting table.</p>
+          </div>
+          <div class="tip">
+            <h4>Sleep every night</h4>
+            <p>Sleeping in a bed skips the night AND sets your spawn point. Die without a bed and you respawn at world spawn.</p>
+          </div>
+          <div class="tip">
+            <h4>Light up your base</h4>
+            <p>Mobs only spawn in darkness. Put torches everywhere — walls, ceilings, and outside. No torches = zombie invasion.</p>
+          </div>
+          <div class="tip">
+            <h4>Never mine straight down</h4>
+            <p>You could fall into lava or a cave. Always mine at an angle or use staircases to go underground.</p>
+          </div>
+          <div class="tip">
+            <h4>Get diamonds ASAP</h4>
+            <p>Diamonds are at Y level -58 or lower. Strip mine at that level or find an ancient city. Worth it — best gear in base game.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- MOBS -->
+<div id="mobs">
+  <div class="section">
+    <div class="section-head">
+      <h2>Mobs</h2>
+      <p>Every creature in the game. Hover to see what they drop.</p>
+    </div>
+    <div class="mob-grid">
+      <div class="mob p">
+        <img src="https://minecraft.wiki/images/Cow_JE3_BE3.png" alt="Cow">
+        <span class="mob-name">Cow</span>
+        <span class="mob-drop">Drops: beef, leather</span>
+        <span class="badge b-g">Passive</span>
+      </div>
+      <div class="mob p">
+        <img src="https://minecraft.wiki/images/Pig_JE4_BE3.png" alt="Pig">
+        <span class="mob-name">Pig</span>
+        <span class="mob-drop">Drops: pork chop</span>
+        <span class="badge b-g">Passive</span>
+      </div>
+      <div class="mob p">
+        <img src="https://minecraft.wiki/images/Sheep_JE3_BE3.png" alt="Sheep">
+        <span class="mob-name">Sheep</span>
+        <span class="mob-drop">Drops: wool, mutton</span>
+        <span class="badge b-g">Passive</span>
+      </div>
+      <div class="mob p">
+        <img src="https://minecraft.wiki/images/Chicken_JE2_BE2.png" alt="Chicken">
+        <span class="mob-name">Chicken</span>
+        <span class="mob-drop">Drops: feathers, egg</span>
+        <span class="badge b-g">Passive</span>
+      </div>
+      <div class="mob n">
+        <img src="https://minecraft.wiki/images/Wolf_JE3_BE3.png" alt="Wolf">
+        <span class="mob-name">Wolf</span>
+        <span class="mob-drop">Tameable with bones</span>
+        <span class="badge b-y">Neutral</span>
+      </div>
+      <div class="mob n">
+        <img src="https://minecraft.wiki/images/Enderman_JE3_BE3.png" alt="Enderman">
+        <span class="mob-name">Enderman</span>
+        <span class="mob-drop">Drops: ender pearl</span>
+        <span class="badge b-y">Neutral</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Zombie_JE3_BE2.png" alt="Zombie">
+        <span class="mob-name">Zombie</span>
+        <span class="mob-drop">Drops: rotten flesh</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Skeleton_JE5.png" alt="Skeleton">
+        <span class="mob-name">Skeleton</span>
+        <span class="mob-drop">Drops: bones, arrows</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Creeper_JE3.png" alt="Creeper">
+        <span class="mob-name">Creeper</span>
+        <span class="mob-drop">Drops: gunpowder</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Spider_JE3_BE2.png" alt="Spider">
+        <span class="mob-name">Spider</span>
+        <span class="mob-drop">Drops: string, spider eye</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Blaze_JE2_BE2.png" alt="Blaze">
+        <span class="mob-name">Blaze</span>
+        <span class="mob-drop">Drops: blaze rod</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob h">
+        <img src="https://minecraft.wiki/images/Witch_JE3_BE2.png" alt="Witch">
+        <span class="mob-name">Witch</span>
+        <span class="mob-drop">Drops: potions, glass</span>
+        <span class="badge b-r">Hostile</span>
+      </div>
+      <div class="mob b">
+        <img src="https://minecraft.wiki/images/Ender_Dragon_JE1.png" alt="Ender Dragon">
+        <span class="mob-name">Ender Dragon</span>
+        <span class="mob-drop">Drops: dragon egg</span>
+        <span class="badge b-p">Boss</span>
+      </div>
+      <div class="mob b">
+        <img src="https://minecraft.wiki/images/Wither_JE2_BE2.png" alt="Wither">
+        <span class="mob-name">Wither</span>
+        <span class="mob-drop">Drops: nether star</span>
+        <span class="badge b-p">Boss</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- HISTORY -->
+<div id="history">
+  <div class="section">
+    <div class="section-head">
+      <h2>History</h2>
+      <p>From a solo dev project to the best-selling game ever.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">09</div>
+        <div class="tl-content">
+          <h4>2009 — The Beginning</h4>
+          <p>Markus "Notch" Persson released the first version of Minecraft (called "Cave Game") on May 17, 2009. It was super basic but people immediately loved it.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">11</div>
+        <div class="tl-content">
+          <h4>2011 — Official Release</h4>
+          <p>Minecraft officially launched on November 18, 2011 at Minecon in Las Vegas. By then it already had 4 million players. Notch announced it live on stage.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">12</div>
+        <div class="tl-content">
+          <h4>2012 — Goes Everywhere</h4>
+          <p>Minecraft came out on Xbox 360 and sold 400,000 copies in the first 24 hours. Then came iOS, Android, and PS3 versions. It was everywhere.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">14</div>
+        <div class="tl-content">
+          <h4>2014 — Microsoft Buys It</h4>
+          <p>Microsoft bought Minecraft and Mojang for $2.5 billion. Notch left the company after the sale. Jens "Jeb" Bergensten took over as lead developer.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">19</div>
+        <div class="tl-content">
+          <h4>2019 — 10 Year Anniversary</h4>
+          <p>Minecraft turned 10 and broke records. Hit 112 million monthly active players. Became the #1 most watched game on YouTube. Also introduced the buzzy bees update.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">25</div>
+        <div class="tl-content">
+          <h4>2025 — Still Going</h4>
+          <p>Minecraft is still getting updates and is still the best-selling game ever with over 300 million copies sold. The movie came out in 2025 too and made over a billion dollars.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- STATS -->
+<div id="facts">
+  <div class="section">
+    <div class="section-head">
+      <h2>By the Numbers</h2>
+      <p>Just how big is Minecraft? These numbers say it all.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><span class="stat-num">300M+</span><span class="stat-label">Copies sold</span></div>
+      <div class="stat"><span class="stat-num">140M</span><span class="stat-label">Monthly players</span></div>
+      <div class="stat"><span class="stat-num">$2.5B</span><span class="stat-label">Sold to Microsoft</span></div>
+      <div class="stat"><span class="stat-num">300+</span><span class="stat-label">Unique blocks</span></div>
+      <div class="stat"><span class="stat-num">71</span><span class="stat-label">Biome types</span></div>
+      <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Years old</span></div>
+      <div class="stat"><span class="stat-num">#1</span><span class="stat-label">Best-selling game ever</span></div>
+      <div class="stat"><span class="stat-num">$1B+</span><span class="stat-label">Movie box office</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  Fan site made for fun · Not affiliated with Mojang or Microsoft
+  <div class="footer-logo">Minecraft Fan Site</div>
+  <p>Made for fun by a fan · Not affiliated with Mojang or Microsoft</p>
 </footer>
 
 </body>
